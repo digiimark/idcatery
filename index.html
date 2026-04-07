@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IDcattery | Playful British Shorthairs</title>
+    <meta name="description"
+        content="Premium British Shorthair Cattery in Seattle, Washington. Specializing in chubby cheeks and endless purrs!">
+
+    <!-- Google Fonts for Playful Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Tailwind Custom Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cream: {
+                            DEFAULT: '#FFF8F0',
+                            dark: '#FFEADB',
+                        },
+                        charcoal: {
+                            DEFAULT: '#2E3A59',
+                            light: '#4B5D82',
+                        },
+                        gold: {
+                            DEFAULT: '#FF8A65',
+                            light: '#FFBBA6',
+                            dark: '#E66A45',
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Fredoka"', 'sans-serif'],
+                        sans: ['"Quicksand"', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'luxury': '0 20px 40px -15px rgba(0, 0, 0, 0.05)',
+                        'glow': '0 0 20px rgba(197, 160, 89, 0.3)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Premium Styles */
+        body {
+            background-color: #FDFBF7;
+        }
+
+        .glass-nav {
+            background: rgba(26, 26, 26, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .glass-card {
+            background: rgba(253, 251, 247, 0.85);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+
+        .dark-glass-card {
+            background: rgba(42, 42, 42, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Image Zoom on Hover */
+        .img-zoom-container {
+            overflow: hidden;
+        }
+
+        .img-zoom-container img {
+            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .img-zoom-container:hover img {
+            transform: scale(1.08);
+        }
+
+        /* Reveal Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-delay-1 {
+            transition-delay: 0.1s;
+        }
+
+        .reveal-delay-2 {
+            transition-delay: 0.2s;
+        }
+
+        .reveal-delay-3 {
+            transition-delay: 0.3s;
+        }
+
+        .reveal-delay-4 {
+            transition-delay: 0.4s;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #FDFBF7;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #C5A059;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #A6823F;
+        }
+    </style>
+</head>
+
+<body class="font-sans text-charcoal antialiased overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-500 bg-transparent py-4">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <span class="font-serif font-bold text-3xl tracking-wide text-white transition-colors duration-300"
+                        id="nav-logo">
+                        ID<span class="text-gold">cattery</span>
+                    </span>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-10 items-center">
+                    <a href="#awards"
+                        class="text-sm font-bold text-white/90 hover:text-gold uppercase tracking-wider transition-colors nav-link">Awards</a>
+                    <a href="#cats"
+                        class="text-sm font-bold text-white/90 hover:text-gold uppercase tracking-wider transition-colors nav-link">Our
+                        Cats</a>
+                    <a href="#faq"
+                        class="text-sm font-bold text-white/90 hover:text-gold uppercase tracking-wider transition-colors nav-link">FAQ</a>
+                    <a href="#contact"
+                        class="bg-gold text-white px-8 py-3 rounded-full text-sm font-bold uppercase tracking-wider hover:bg-gold-dark transition-all duration-300 shadow-glow">Contact</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn"
+                        class="text-white hover:text-gold transition-colors focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu"
+            class="hidden md:hidden absolute w-full glass-nav shadow-2xl origin-top transition-transform duration-300 rounded-b-3xl">
+            <div class="px-6 py-8 space-y-6 text-center">
+                <a href="#awards"
+                    class="block text-base font-bold text-white hover:text-gold uppercase tracking-wider">Awards</a>
+                <a href="#cats"
+                    class="block text-base font-bold text-white hover:text-gold uppercase tracking-wider">Our Cats</a>
+                <a href="#faq"
+                    class="block text-base font-bold text-white hover:text-gold uppercase tracking-wider">FAQ</a>
+                <a href="#contact"
+                    class="inline-block mt-4 bg-gold text-white px-8 py-3 text-sm font-bold uppercase tracking-wider w-full rounded-full">Contact
+                    Now</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Cinematic Hero Section -->
+    <header class="relative h-screen flex items-center justify-center overflow-hidden">
+        <!-- Background Image with Parallax feel -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1555685812-4b943f1cb0eb?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
+                alt="Majestic British Shorthair" class="w-full h-full object-cover object-center scale-105 transform">
+            <div class="absolute inset-0 bg-gradient-to-b from-charcoal/60 via-charcoal/30 to-charcoal/90"></div>
+        </div>
+
+        <div
+            class="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-12 flex flex-col items-center md:items-start text-center md:text-left mt-20">
+            <div class="overflow-hidden mb-4">
+                <p class="text-gold tracking-widest uppercase text-sm md:text-base font-bold reveal">Seattle, Washington
+                </p>
+            </div>
+
+            <h1 class="text-5xl md:text-7xl lg:text-8xl text-white font-serif leading-tight reveal reveal-delay-1">
+                Chubby Cheeks &<br />
+                <span class="text-gold">Endless Purrs</span>
+            </h1>
+
+            <p
+                class="text-white/90 max-w-xl mt-6 text-xl md:text-2xl font-medium leading-relaxed reveal reveal-delay-2">
+                We specialize in world-class British Shorthairs! Discover kittens with plush coats, round teddy-bear
+                faces, and playful, affectionate personalities.
+            </p>
+
+            <div class="mt-12 flex flex-col sm:flex-row gap-6 reveal reveal-delay-3">
+                <a href="#cats"
+                    class="bg-gold text-white px-10 py-4 text-sm font-bold uppercase tracking-wider hover:bg-white hover:text-charcoal transition-all duration-500 text-center rounded-full shadow-glow">
+                    Meet Our Cats
+                </a>
+                <a href="#about"
+                    class="border-2 border-white/50 text-white px-10 py-4 text-sm font-bold uppercase tracking-wider hover:bg-white/20 transition-all duration-500 backdrop-blur-sm text-center rounded-full">
+                    Why British Shorthairs?
+                </a>
+            </div>
+        </div>
+
+        <!-- Scroll Down Indicator -->
+        <div
+            class="absolute bottom-12 left-1/2 transform -translate-x-1/2 z-20 flex flex-col items-center reveal reveal-delay-4">
+            <span class="text-white/80 text-sm font-bold tracking-widest uppercase mb-4">Scroll to explore</span>
+            <div class="w-[3px] h-12 bg-gradient-to-b from-gold to-transparent rounded-full"></div>
+        </div>
+    </header>
+
+    <!-- Awards / Excellence overlapping bar -->
+    <section id="awards" class="relative z-20 -mt-16 md:-mt-24 px-6 lg:px-12 max-w-7xl mx-auto reveal">
+        <div
+            class="glass-card rounded-[2rem] p-8 md:p-12 shadow-xl grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4 text-center divide-x divide-charcoal/10">
+            <div class="px-4">
+                <span class="block text-gold text-4xl mb-3"><i class="fas fa-crown"></i></span>
+                <h4 class="font-serif font-bold text-charcoal text-xl md:text-2xl">#1 in Northwest</h4>
+                <p class="text-sm font-bold text-charcoal/60 mt-2 uppercase tracking-wider">TICA Rankings</p>
+            </div>
+            <div class="px-4">
+                <span class="block text-gold text-4xl mb-3"><i class="fas fa-globe"></i></span>
+                <h4 class="font-serif font-bold text-charcoal text-xl md:text-2xl">World's Best</h4>
+                <p class="text-sm font-bold text-charcoal/60 mt-2 uppercase tracking-wider">White British Shorthair</p>
+            </div>
+            <div class="px-4">
+                <span class="block text-gold text-4xl mb-3"><i class="fas fa-award"></i></span>
+                <h4 class="font-serif font-bold text-charcoal text-xl md:text-2xl">Champions</h4>
+                <p class="text-sm font-bold text-charcoal/60 mt-2 uppercase tracking-wider">Elite Bloodlines</p>
+            </div>
+            <div class="px-4">
+                <span class="block text-gold text-4xl mb-3"><i class="fas fa-certificate"></i></span>
+                <h4 class="font-serif font-bold text-charcoal text-xl md:text-2xl">Registered</h4>
+                <p class="text-sm font-bold text-charcoal/60 mt-2 uppercase tracking-wider">TICA Cattery</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Editorial Heritage Section -->
+    <section id="about" class="py-32 bg-cream overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
+
+                <!-- Left: Editorial Image Composition -->
+                <div class="w-full lg:w-1/2 relative reveal">
+                    <div class="aspect-[3/4] w-4/5 overflow-hidden rounded-[3rem] shadow-xl border-4 border-white">
+                        <img src="https://images.unsplash.com/photo-1573865526739-10659fec78a5?auto=format&fit=crop&w=800&q=80"
+                            alt="Award Winning Cat" class="w-full h-full object-cover">
+                    </div>
+                    <!-- Floating Overlap Image -->
+                    <div
+                        class="absolute bottom-10 -right-4 w-1/2 aspect-square border-8 border-cream shadow-2xl rounded-full overflow-hidden img-zoom-container reveal reveal-delay-2">
+                        <img src="https://images.unsplash.com/photo-1543852786-1cf6624b9987?auto=format&fit=crop&w=600&q=80"
+                            alt="Beautiful Kitten" class="w-full h-full object-cover">
+                    </div>
+                    <!-- Accent Shape -->
+                    <div class="absolute -top-10 -left-10 w-40 h-40 bg-gold/20 rounded-full blur-3xl -z-10"></div>
+                </div>
+
+                <!-- Right: Content -->
+                <div class="w-full lg:w-1/2 reveal reveal-delay-1">
+                    <span class="flex items-center text-gold text-sm font-bold tracking-widest uppercase mb-6">
+                        <span class="w-12 h-[4px] rounded-full bg-gold mr-4"></span> The British Shorthair Charm
+                    </span>
+                    <h2 class="text-4xl md:text-5xl font-serif text-charcoal mb-8 leading-tight">
+                        Teddy Bear Looks & <br /> <span class="text-gold">Golden Hearts</span>
+                    </h2>
+
+                    <p class="text-charcoal/80 mb-6 leading-loose text-lg font-medium">
+                        British Shorthairs are famous for their dense, plush coats and undeniably cute chubby cheeks. At
+                        IDcattery, raising these playful, easygoing companions is our greatest joy.
+                    </p>
+                    <p class="text-charcoal/80 mb-10 leading-loose text-lg font-medium">
+                        They are the perfect mix of independent and affectionate—ready for a case of the "zoomies" and
+                        just as happy to snuggle up beside you. Our award-winning bloodlines ensure you get the absolute
+                        best of the breed!
+                    </p>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-12">
+                        <div
+                            class="flex items-center bg-white p-4 rounded-3xl shadow-sm border border-charcoal/5 hover:border-gold transition-colors">
+                            <div
+                                class="w-12 h-12 rounded-full bg-gold/20 flex items-center justify-center mr-4 text-gold text-xl">
+                                <i class="fas fa-heart"></i></div>
+                            <span class="text-charcoal font-bold text-lg">Impeccable Health</span>
+                        </div>
+                        <div
+                            class="flex items-center bg-white p-4 rounded-3xl shadow-sm border border-charcoal/5 hover:border-gold transition-colors">
+                            <div
+                                class="w-12 h-12 rounded-full bg-gold/20 flex items-center justify-center mr-4 text-gold text-xl">
+                                <i class="fas fa-smile-beam"></i></div>
+                            <span class="text-charcoal font-bold text-lg">Playful Spirit</span>
+                        </div>
+                        <div
+                            class="flex items-center bg-white p-4 rounded-3xl shadow-sm border border-charcoal/5 hover:border-gold transition-colors">
+                            <div
+                                class="w-12 h-12 rounded-full bg-gold/20 flex items-center justify-center mr-4 text-gold text-xl">
+                                <i class="fas fa-paw"></i></div>
+                            <span class="text-charcoal font-bold text-lg">Plush Velvet Coats</span>
+                        </div>
+                        <div
+                            class="flex items-center bg-white p-4 rounded-3xl shadow-sm border border-charcoal/5 hover:border-gold transition-colors">
+                            <div
+                                class="w-12 h-12 rounded-full bg-gold/20 flex items-center justify-center mr-4 text-gold text-xl">
+                                <i class="fas fa-home"></i></div>
+                            <span class="text-charcoal font-bold text-lg">Raised with Love</span>
+                        </div>
+                    </div>
+
+                    <a href="#cats"
+                        class="group inline-flex items-center text-charcoal font-bold uppercase tracking-widest hover:text-gold transition-colors pb-2">
+                        See Available Cats
+                        <span
+                            class="ml-4 bg-gold text-white w-10 h-10 rounded-full flex items-center justify-center transform group-hover:translate-x-2 transition-transform shadow-md"><i
+                                class="fas fa-arrow-right"></i></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Showcase (Available Kittens) -->
+    <section id="cats" class="py-32 bg-charcoal text-white relative">
+        <div class="absolute inset-0 opacity-5 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]">
+        </div>
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-20 reveal">
+                <span class="text-gold text-sm font-bold tracking-widest uppercase mb-4 block">Meet The Fluffs</span>
+                <h2 class="text-5xl md:text-6xl font-serif mb-6">Our Adorable <span class="text-gold">Kittens</span>
+                </h2>
+                <div class="w-24 h-[4px] rounded-full bg-gold mx-auto mb-6"></div>
+                <p class="text-white/80 text-xl font-medium">Browse our currently available little ones. Each kitten is
+                    raised underfoot with plenty of toys, ensuring they are impeccably socialized and ready for fun!</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+                <!-- Kitten Card 1 -->
+                <div
+                    class="group relative overflow-hidden aspect-[3/4] cursor-pointer reveal reveal-delay-1 rounded-[2.5rem] border-4 border-transparent hover:border-gold transition-all duration-300 shadow-2xl bg-white">
+                    <img src="https://images.unsplash.com/photo-1513245543132-31f507417b26?auto=format&fit=crop&w=600&q=80"
+                        alt="Cinnamon Boy"
+                        class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500">
+                    </div>
+
+                    <div class="absolute top-6 right-6">
+                        <span
+                            class="bg-gold text-white text-xs font-bold uppercase tracking-widest py-2 px-4 rounded-full shadow-lg">Available</span>
+                    </div>
+
+                    <div
+                        class="absolute bottom-0 left-0 w-full p-8 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                        <h3 class="font-serif text-3xl mb-1 drop-shadow-md">Cinnamon Boy</h3>
+                        <p class="text-gold text-sm font-bold uppercase tracking-wider mb-4 drop-shadow-md">4 Months Old
+                        </p>
+                        <a href="#contact"
+                            class="inline-block bg-white text-charcoal px-6 py-3 text-sm font-bold uppercase tracking-widest hover:bg-gold hover:text-white transition-colors w-max opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 rounded-full shadow-md">Say
+                            Hello!</a>
+                    </div>
+                </div>
+
+                <!-- Kitten Card 2 -->
+                <div
+                    class="group relative overflow-hidden aspect-[3/4] cursor-pointer reveal reveal-delay-2 rounded-[2.5rem] border-4 border-transparent hover:border-gold transition-all duration-300 shadow-2xl bg-white">
+                    <img src="https://images.unsplash.com/photo-1529778456-4cb4422e5052?auto=format&fit=crop&w=600&q=80"
+                        alt="Blue Girl"
+                        class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500">
+                    </div>
+
+                    <div class="absolute top-6 right-6">
+                        <span
+                            class="bg-gold text-white text-xs font-bold uppercase tracking-widest py-2 px-4 rounded-full shadow-lg">Available</span>
+                    </div>
+
+                    <div
+                        class="absolute bottom-0 left-0 w-full p-8 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                        <h3 class="font-serif text-3xl mb-1 drop-shadow-md">Blue Girl</h3>
+                        <p class="text-gold text-sm font-bold uppercase tracking-wider mb-4 drop-shadow-md">4 Months Old
+                        </p>
+                        <a href="#contact"
+                            class="inline-block bg-white text-charcoal px-6 py-3 text-sm font-bold uppercase tracking-widest hover:bg-gold hover:text-white transition-colors w-max opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 rounded-full shadow-md">Say
+                            Hello!</a>
+                    </div>
+                </div>
+
+                <!-- Kitten Card 3 -->
+                <div
+                    class="group relative overflow-hidden aspect-[3/4] cursor-pointer reveal reveal-delay-3 rounded-[2.5rem] border-4 border-transparent hover:border-gold transition-all duration-300 shadow-2xl bg-white">
+                    <img src="https://images.unsplash.com/photo-1615266895738-11f1371cd7e5?auto=format&fit=crop&w=600&q=80"
+                        alt="Chocolate Girl"
+                        class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500">
+                    </div>
+
+                    <div class="absolute top-6 right-6">
+                        <span
+                            class="bg-gold text-white text-xs font-bold uppercase tracking-widest py-2 px-4 rounded-full shadow-lg">Available</span>
+                    </div>
+
+                    <div
+                        class="absolute bottom-0 left-0 w-full p-8 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                        <h3 class="font-serif text-3xl mb-1 drop-shadow-md">Chocolate Girl</h3>
+                        <p class="text-gold text-sm font-bold uppercase tracking-wider mb-4 drop-shadow-md">3 Months Old
+                        </p>
+                        <a href="#contact"
+                            class="inline-block bg-white text-charcoal px-6 py-3 text-sm font-bold uppercase tracking-widest hover:bg-gold hover:text-white transition-colors w-max opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 rounded-full shadow-md">Say
+                            Hello!</a>
+                    </div>
+                </div>
+
+                <!-- Kitten Card 4 (Reserved) -->
+                <div
+                    class="group relative overflow-hidden aspect-[3/4] cursor-not-allowed reveal reveal-delay-4 grayscale-[30%] rounded-[2.5rem] bg-white">
+                    <img src="https://images.unsplash.com/photo-1548802673-380ab8ebc7b7?auto=format&fit=crop&w=600&q=80"
+                        alt="Cinnamon Girl"
+                        class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105">
+                    <div
+                        class="absolute inset-0 bg-charcoal/40 group-hover:bg-charcoal/60 transition-colors duration-500">
+                    </div>
+
+                    <div class="absolute top-6 right-6 z-10">
+                        <span
+                            class="bg-charcoal text-white border-2 border-white/20 text-xs font-bold uppercase tracking-widest py-2 px-4 rounded-full">Reserved</span>
+                    </div>
+
+                    <div class="absolute bottom-0 left-0 w-full p-8 text-white/50">
+                        <h3 class="font-serif text-3xl mb-1 text-white/70 drop-shadow-md">Cinnamon Girl</h3>
+                        <p class="text-white/50 text-sm font-bold uppercase tracking-wider mb-4 drop-shadow-md">3 Months
+                            Old</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Adult Cats / Retirees Section -->
+    <section id="adults" class="py-32 bg-cream-dark relative">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="flex flex-col lg:flex-row justify-between items-end mb-16 gap-8 reveal">
+                <div class="max-w-2xl">
+                    <span class="text-gold text-sm font-bold tracking-widest uppercase mb-4 block">Experienced
+                        Companions</span>
+                    <h2 class="text-5xl font-serif text-charcoal mb-6">Laid-Back <span class="text-gold">Loungers</span>
+                    </h2>
+                    <p class="text-charcoal/80 text-xl font-medium">Our older kitties are retiring from our program and
+                        are seeking loving forever homes. They are fully vetted, spayed/neutered, and ready to bring
+                        snuggles to your household!</p>
+                </div>
+                <a href="#contact"
+                    class="hidden md:inline-flex items-center text-charcoal font-bold uppercase tracking-widest hover:text-white hover:bg-gold transition-colors whitespace-nowrap bg-white px-8 py-4 rounded-full shadow-md">
+                    Inquire About Retirees <i class="fas fa-paw ml-4 text-gold group-hover:text-white"></i>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Adult Cat 1: Leon -->
+                <div
+                    class="bg-white rounded-[2rem] p-6 shadow-md hover:shadow-2xl transition-all duration-500 reveal reveal-delay-1 border-2 border-transparent hover:border-gold">
+                    <div class="img-zoom-container mb-6 overflow-hidden h-64 rounded-2xl">
+                        <img src="https://images.unsplash.com/photo-1533738363-b7f9aef128ce?auto=format&fit=crop&w=600&q=80"
+                            alt="Leon" class="w-full h-full object-cover object-top">
+                    </div>
+                    <div class="flex justify-between items-end mb-2">
+                        <h3 class="font-serif text-3xl text-charcoal">Leon</h3>
+                        <span class="text-gold font-bold text-lg tracking-wide">$3,000</span>
+                    </div>
+                    <p
+                        class="text-xs text-charcoal/50 font-bold uppercase tracking-wider mb-6 pb-4 border-b border-charcoal/10">
+                        White Odd-Eyed Boy</p>
+                    <ul class="space-y-3 text-base text-charcoal/80 font-medium mb-6">
+                        <li class="flex items-start"><span class="text-gold mr-3 mt-1 text-sm"><i
+                                    class="fas fa-cat"></i></span> Amazing friendly boy, loves everyone!</li>
+                        <li class="flex items-start"><span class="text-gold mr-3 mt-1 text-sm"><i
+                                    class="fas fa-cat"></i></span> Impressive show achievements</li>
+                        <li class="flex items-start"><span class="text-gold mr-3 mt-1 text-sm"><i
+                                    class="fas fa-cat"></i></span> Single pet home only (or with sibling)</li>
+                    </ul>
+                </div>
+
+                <!-- Adult Cat 2: Turquoise -->
+                <div
+                    class="bg-white rounded-[2rem] p-6 shadow-md hover:shadow-2xl transition-all duration-500 reveal reveal-delay-2 border-2 border-transparent hover:border-gold">
+                    <div class="img-zoom-container mb-6 overflow-hidden h-64 rounded-2xl">
+                        <img src="https://images.unsplash.com/photo-1543852786-1cf6624b9987?auto=format&fit=crop&w=600&q=80"
+                            alt="Turquoise" class="w-full h-full object-cover object-top">
+                    </div>
+                    <div class="flex justify-between items-end mb-2">
+                        <h3 class="font-serif text-3xl text-charcoal">Turquoise</h3>
+                        <span class="text-gold font-bold text-lg tracking-wide">$1,100</span>
+                    </div>
+                    <p
+                        class="text-xs text-charcoal/50 font-bold uppercase tracking-wider mb-6 pb-4 border-b border-charcoal/10">
+                        Blue Female (2.9 yrs)</p>
+                    <ul class="space-y-3 text-base text-charcoal/80 font-medium mb-6">
+                        <li class="flex items-start"><span class="text-gold mr-3 mt-1 text-sm"><i
+                                    class="fas fa-cat"></i></span> Foodie, chubby, and super affectionate</li>
+                        <li class="flex items-start"><span class="text-gold mr-3 mt-1 text-sm"><i
+                                    class="fas fa-cat"></i></span> Loves cuddles & behind the ear scratches</li>
+                        <li class="flex items-start"><span class="text-gold mr-3 mt-1 text-sm"><i
+                                    class="fas fa-cat"></i></span> Prefers a home without small children</li>
+                    </ul>
+                </div>
+
+                <!-- Adult Cat 3: Goldie -->
+                <div
+                    class="bg-white rounded-[2rem] p-6 shadow-md hover:shadow-2xl transition-all duration-500 reveal reveal-delay-3 border-2 border-transparent hover:border-gold">
+                    <div class="img-zoom-container mb-6 overflow-hidden h-64 rounded-2xl">
+                        <img src="https://images.unsplash.com/photo-1511275539165-cc46b1ee89bf?auto=format&fit=crop&w=600&q=80"
+                            alt="Goldie" class="w-full h-full object-cover object-top">
+                    </div>
+                    <div class="flex justify-between items-end mb-2">
+                        <h3 class="font-serif text-3xl text-charcoal">Goldie</h3>
+                        <span class="text-gold font-bold text-lg tracking-wide">$1,100</span>
+                    </div>
+                    <p
+                        class="text-xs text-charcoal/50 font-bold uppercase tracking-wider mb-6 pb-4 border-b border-charcoal/10">
+                        Super Charming Girl</p>
+                    <ul class="space-y-3 text-base text-charcoal/80 font-medium mb-6">
+                        <li class="flex items-start"><span class="text-gold mr-3 mt-1 text-sm"><i
+                                    class="fas fa-cat"></i></span> Holds notable show achievements</li>
+                        <li class="flex items-start"><span class="text-gold mr-3 mt-1 text-sm"><i
+                                    class="fas fa-cat"></i></span> Slightly shy, deeply loyal to one person</li>
+                        <li class="flex items-start"><span class="text-gold mr-3 mt-1 text-sm"><i
+                                    class="fas fa-cat"></i></span> Offered as single pet only</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mt-10 text-center md:hidden">
+                <a href="#contact"
+                    class="inline-flex items-center text-charcoal font-bold uppercase tracking-widest hover:text-white hover:bg-gold transition-colors whitespace-nowrap bg-white px-8 py-4 rounded-full shadow-md">
+                    Inquire About Retirees <i class="fas fa-paw ml-4 text-gold group-hover:text-white"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-32 bg-white relative">
+        <div class="max-w-4xl mx-auto px-6 lg:px-12 reveal">
+            <div class="text-center mb-16">
+                <span class="text-gold text-sm font-bold tracking-widest uppercase mb-4 block">Got Questions?</span>
+                <h2 class="text-5xl font-serif text-charcoal mb-6">Frequently Asked <span
+                        class="text-gold">Questions</span></h2>
+                <div class="w-24 h-[4px] rounded-full bg-gold mx-auto"></div>
+            </div>
+
+            <div class="space-y-6">
+                <div
+                    class="bg-cream p-8 rounded-3xl shadow-sm border border-charcoal/5 hover:border-gold transition-colors">
+                    <h4 class="font-serif text-2xl text-charcoal mb-3 flex items-center"><i
+                            class="fas fa-question-circle text-gold mr-3"></i> Are British Shorthairs cuddly?</h4>
+                    <p class="text-charcoal/80 font-medium text-lg ml-9">Yes! While they aren't always "velcro cats"
+                        that demand to be carried constantly, they are incredibly affectionate and love to sit beside
+                        you (or on your feet) while you relax.</p>
+                </div>
+                <div
+                    class="bg-cream p-8 rounded-3xl shadow-sm border border-charcoal/5 hover:border-gold transition-colors">
+                    <h4 class="font-serif text-2xl text-charcoal mb-3 flex items-center"><i
+                            class="fas fa-question-circle text-gold mr-3"></i> Do they get along with kids and dogs?
+                    </h4>
+                    <p class="text-charcoal/80 font-medium text-lg ml-9">Absolutely. Their easygoing, calm, and patient
+                        temperament makes them fantastic companions for families with children and cat-friendly dogs.
+                    </p>
+                </div>
+                <div
+                    class="bg-cream p-8 rounded-3xl shadow-sm border border-charcoal/5 hover:border-gold transition-colors">
+                    <h4 class="font-serif text-2xl text-charcoal mb-3 flex items-center"><i
+                            class="fas fa-question-circle text-gold mr-3"></i> What is the adoption process?</h4>
+                    <p class="text-charcoal/80 font-medium text-lg ml-9">Simply fill out our contact form below to tell
+                        us a bit about yourself. We'll get back to you with availability, pricing, and the next steps to
+                        reserve your new fluffy best friend!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Application / Contact Section -->
+    <section id="contact" class="py-32 bg-cream relative overflow-hidden">
+        <div class="max-w-6xl mx-auto px-6 lg:px-12 relative z-10">
+            <div
+                class="bg-white shadow-2xl rounded-[3rem] flex flex-col md:flex-row reveal border border-charcoal/5 overflow-hidden">
+
+                <!-- Left: Form -->
+                <div class="p-10 md:p-16 md:w-3/5 w-full relative">
+                    <span class="text-gold text-sm font-bold tracking-widest uppercase mb-4 block">Let's Chat!</span>
+                    <h3 class="font-serif text-4xl text-charcoal mb-8">Say <span class="text-gold">Hello</span></h3>
+
+                    <!-- Success Message Box (Hidden by Default) -->
+                    <div id="form-success" class="hidden bg-cream-dark border-2 border-gold rounded-2xl p-6 mb-8">
+                        <h4 class="font-serif text-xl text-charcoal mb-2 flex items-center"><i
+                                class="fas fa-check-circle text-gold mr-2"></i> Purr-fect!</h4>
+                        <p class="text-base text-charcoal/80 font-medium">Your inquiry has been received. Our team will
+                            review your application and contact you shortly!</p>
+                    </div>
+
+                    <form id="adoption-form" onsubmit="submitForm(event)" class="space-y-8">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                            <div class="relative">
+                                <input type="text" id="first-name" required
+                                    class="peer w-full border-b-2 border-charcoal/20 bg-transparent py-2 pt-6 focus:outline-none focus:border-gold transition-colors text-charcoal placeholder-transparent font-medium"
+                                    placeholder="First Name">
+                                <label for="first-name"
+                                    class="absolute left-0 top-2 text-xs font-bold text-charcoal/50 uppercase tracking-widest transition-all peer-placeholder-shown:top-6 peer-placeholder-shown:text-base peer-focus:top-2 peer-focus:text-xs peer-focus:text-gold">First
+                                    Name</label>
+                            </div>
+                            <div class="relative">
+                                <input type="text" id="last-name" required
+                                    class="peer w-full border-b-2 border-charcoal/20 bg-transparent py-2 pt-6 focus:outline-none focus:border-gold transition-colors text-charcoal placeholder-transparent font-medium"
+                                    placeholder="Last Name">
+                                <label for="last-name"
+                                    class="absolute left-0 top-2 text-xs font-bold text-charcoal/50 uppercase tracking-widest transition-all peer-placeholder-shown:top-6 peer-placeholder-shown:text-base peer-focus:top-2 peer-focus:text-xs peer-focus:text-gold">Last
+                                    Name</label>
+                            </div>
+                        </div>
+
+                        <div class="relative">
+                            <input type="email" id="email" required
+                                class="peer w-full border-b-2 border-charcoal/20 bg-transparent py-2 pt-6 focus:outline-none focus:border-gold transition-colors text-charcoal placeholder-transparent font-medium"
+                                placeholder="Email Address">
+                            <label for="email"
+                                class="absolute left-0 top-2 text-xs font-bold text-charcoal/50 uppercase tracking-widest transition-all peer-placeholder-shown:top-6 peer-placeholder-shown:text-base peer-focus:top-2 peer-focus:text-xs peer-focus:text-gold">Email
+                                Address</label>
+                        </div>
+
+                        <div class="relative pt-6">
+                            <label for="interest"
+                                class="absolute left-0 top-0 text-xs font-bold text-charcoal/50 uppercase tracking-widest">I
+                                am interested in</label>
+                            <select id="interest"
+                                class="w-full border-b-2 border-charcoal/20 bg-transparent py-2 focus:outline-none focus:border-gold transition-colors text-charcoal font-medium cursor-pointer appearance-none rounded-none">
+                                <option value="kitten">A Fluffy New Kitten</option>
+                                <option value="adult">A Laid-Back Retiree</option>
+                                <option value="general">Just Saying Hello / General Questions</option>
+                            </select>
+                            <i
+                                class="fas fa-chevron-down absolute right-0 top-8 text-sm text-charcoal/50 pointer-events-none"></i>
+                        </div>
+
+                        <div class="relative pt-6">
+                            <label for="message"
+                                class="absolute left-0 top-0 text-xs font-bold text-charcoal/50 uppercase tracking-widest">Tell
+                                us about your home/lifestyle</label>
+                            <textarea id="message" required rows="3"
+                                class="w-full border-b-2 border-charcoal/20 bg-transparent py-2 focus:outline-none focus:border-gold transition-colors resize-none text-charcoal font-medium"
+                                placeholder="Do you have other pets? Small children?"></textarea>
+                        </div>
+
+                        <button type="submit" id="submit-btn"
+                            class="w-full bg-charcoal text-white py-4 rounded-full font-bold uppercase tracking-widest text-sm hover:bg-gold transition-colors duration-500 shadow-md">
+                            Send Message <i class="fas fa-paper-plane ml-2"></i>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Right: Info Panel -->
+                <div
+                    class="md:w-2/5 w-full bg-charcoal text-white relative overflow-hidden flex flex-col justify-between p-10 md:p-16">
+                    <div class="absolute inset-0 z-0 opacity-10">
+                        <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=800&q=80"
+                            alt="Texture" class="w-full h-full object-cover mix-blend-overlay">
+                    </div>
+
+                    <div class="relative z-10">
+                        <h4 class="font-serif text-3xl mb-8">Contact<br><span class="text-gold">Details</span></h4>
+                        <div class="space-y-8 font-medium text-white/90">
+                            <div class="flex items-start group">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-gold/20 flex items-center justify-center mr-4 text-gold transition-transform group-hover:-translate-y-1">
+                                    <i class="fas fa-map-marker-alt"></i></div>
+                                <div>
+                                    <p class="text-xs font-bold uppercase tracking-widest text-white/50 mb-1 mt-1">
+                                        Location</p>
+                                    <p>Seattle, Washington<br>United States</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start group">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-gold/20 flex items-center justify-center mr-4 text-gold transition-transform group-hover:-translate-y-1">
+                                    <i class="fas fa-envelope"></i></div>
+                                <div>
+                                    <p class="text-xs font-bold uppercase tracking-widest text-white/50 mb-1 mt-1">Email
+                                    </p>
+                                    <a href="mailto:hello@idcattery.com"
+                                        class="hover:text-gold transition-colors">hello@idcattery.com</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="relative z-10 mt-16 md:mt-0">
+                        <p class="text-xs font-bold uppercase tracking-widest text-white/50 mb-4">Follow the Fun</p>
+                        <div class="flex space-x-4">
+                            <a href="#"
+                                class="w-10 h-10 rounded-full bg-white/10 hover:bg-gold flex items-center justify-center text-white transition-colors text-lg"><i
+                                    class="fab fa-instagram"></i></a>
+                            <a href="#"
+                                class="w-10 h-10 rounded-full bg-white/10 hover:bg-gold flex items-center justify-center text-white transition-colors text-lg"><i
+                                    class="fab fa-facebook-f"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-charcoal border-t border-white/5 pt-20 pb-10">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12 mb-16">
+                <!-- Brand Column -->
+                <div class="md:col-span-5">
+                    <span class="font-serif font-bold text-4xl text-white tracking-wide mb-6 block">
+                        ID<span class="text-gold">cattery</span>
+                    </span>
+                    <p class="text-white/70 max-w-sm mb-8 font-medium leading-relaxed text-lg">
+                        An elite TICA Registered British Shorthair Cattery. Breeding for health, chubby cheeks, and
+                        hearts full of love.
+                    </p>
+                    <div
+                        class="inline-flex items-center bg-white/10 px-6 py-3 rounded-full text-xs font-bold text-white uppercase tracking-widest border border-white/10">
+                        <i class="fas fa-award text-gold mr-3 text-base"></i> TICA Registered
+                    </div>
+                </div>
+
+                <!-- Links Column -->
+                <div class="md:col-span-3 md:col-start-7">
+                    <h5 class="text-white text-xs font-bold uppercase tracking-widest mb-6">Explore</h5>
+                    <ul class="space-y-4 font-medium text-base">
+                        <li><a href="#awards" class="text-white/60 hover:text-gold transition-colors">Awards</a></li>
+                        <li><a href="#cats" class="text-white/60 hover:text-gold transition-colors">Our Cats</a></li>
+                        <li><a href="#faq" class="text-white/60 hover:text-gold transition-colors">F.A.Q.</a></li>
+                        <li><a href="#contact" class="text-white/60 hover:text-gold transition-colors">Contact Us</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Legal Column -->
+                <div class="md:col-span-3">
+                    <h5 class="text-white text-xs font-bold uppercase tracking-widest mb-6">Policies</h5>
+                    <ul class="space-y-4 font-medium text-base">
+                        <li><a href="#" class="text-white/60 hover:text-gold transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="text-white/60 hover:text-gold transition-colors">Adoption Contract</a>
+                        </li>
+                        <li><a href="#" class="text-white/60 hover:text-gold transition-colors">Health Guarantee</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div
+                class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-white/50 uppercase tracking-widest font-bold">
+                <p class="mb-4 md:mb-0">
+                    &copy; <span id="year"></span> IDcattery. All rights reserved.
+                </p>
+                <p>
+                    Seattle, WA
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Scripts -->
+    <script>
+        // Set current year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        const navLogo = document.getElementById('nav-logo');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const menuBtn = document.getElementById('mobile-menu-btn');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('glass-nav', 'py-2');
+                navbar.classList.remove('bg-transparent', 'py-4');
+                // Adjust text colors for lighter background if needed, but we kept nav dark.
+            } else {
+                navbar.classList.remove('glass-nav', 'py-2');
+                navbar.classList.add('bg-transparent', 'py-4');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu on click
+        const mobileLinks = menu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+            });
+        });
+
+        // Custom Form Submission (No Alerts)
+        function submitForm(e) {
+            e.preventDefault(); // Prevent page reload
+            const form = document.getElementById('adoption-form');
+            const successBox = document.getElementById('form-success');
+            const submitBtn = document.getElementById('submit-btn');
+
+            // Visual feedback
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Sending...';
+            submitBtn.classList.add('opacity-80', 'cursor-not-allowed');
+
+            // Simulate API Call
+            setTimeout(() => {
+                form.style.display = 'none';
+                successBox.classList.remove('hidden');
+            }, 1000);
+        }
+
+        // Scroll Reveal Animations
+        document.addEventListener("DOMContentLoaded", function () {
+            const reveals = document.querySelectorAll(".reveal");
+
+            const revealOptions = {
+                threshold: 0.15,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const revealOnScroll = new IntersectionObserver(function (entries, observer) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("active");
+                        observer.unobserve(entry.target); // Only animate once
+                    }
+                });
+            }, revealOptions);
+
+            reveals.forEach(reveal => {
+                revealOnScroll.observe(reveal);
+            });
+
+            // Trigger immediately for elements already in view on load
+            setTimeout(() => {
+                reveals.forEach(reveal => {
+                    const rect = reveal.getBoundingClientRect();
+                    if (rect.top < window.innerHeight) {
+                        reveal.classList.add('active');
+                    }
+                });
+            }, 100);
+        });
+    </script>
+</body>
+
+</html>
